@@ -1,11 +1,77 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-	<Welcome />
+    <main>
+        <section class="scrolling-section relative min-h-screen" client:only="motion">
+            <video
+                autoplay
+                muted
+                loop
+                class="absolute inset-0 w-full h-full object-cover"
+            >
+                <source src="/assets/intro-movie.mov" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <div class="absolute inset-0 bg-black opacity-70"></div>
+            <div
+                class="relative bottom-0 left-0 transform translate-z-1/2 w-full flex flex-col flex-wrap py-6 opacity-95 items-center justify-between min-h-screen overflow-hidden"
+            >
+                <h1
+                    class="top-0 text-nowrap select-none font-josefin"
+                    style="font-size: calc(10vw + 10vh);"
+                >
+                    <span class="name font-bold">Dávid</span>
+                    <span class="surname">Ďurišin</span>
+                </h1>
+                <div class="desc text-center flex flex-col gap-18">
+                    <p class="text-sm/6 text-balance lg:text-lg/6 max-w-sm lg:max-w-lg">
+                        Creative short films, behind-the-scenes stories, raw visuals, and
+                        authentic moments. Emotion-driven storytelling with a focus on
+                        honesty, spontaneity, and a sharp eye for detail. A filmmaker guided
+                        by intuition, curiosity, and a love for the real.
+                    </p>
+                    <p class="text-xl font-josefin font-bold">Slovakia | Worldwide</p>
+                </div>
+                <p class="location hidden lg:block absolute text-xl font-bold bottom-2 left-0 p-6">
+                        48.7164° N
+                </p>
+                <p class="location hidden lg:block absolute text-xl font-bold bottom-2 right-0 p-6">
+                        21.2611° E
+                </p>
+            </div>
+        </section>
+    </main>
 </Layout>
+
+<script>
+    import { animate, stagger, inView } from "motion";
+
+    inView(
+        ".scrolling-section",
+        (element) => {
+            animate(element, { opacity: [0, 1], y: [50, 0] }, { ease: [0.39, 0.24, 0.3, 1], duration: 1 });
+
+            const name = element.querySelector(".name");
+            if (name) {
+                animate(name, { opacity: [0, 1], y: [-320, 0] }, { type: "spring", ease: "circInOut", delay: stagger(0.25, { startDelay: 0.25 }) });
+            }
+            const surname = element.querySelector(".surname");
+            if (surname) {
+                animate(surname, { opacity: [0, 1], y: [-320, 0] }, { type: "spring", delay: stagger(0.25, { startDelay: 0.25 }) });
+            }
+
+            const cards = element.querySelectorAll(".location");
+            if (cards.length > 0) {
+                animate(cards, { opacity: [0, 1], y: [25, 0] }, { type: "spring", delay: stagger(0.25, { startDelay: 0.75 }) });
+            }
+
+            const desc = element.querySelector(".desc");
+            if (desc) {
+                animate(desc, { opacity: [0, 1], y: [25, 0] }, { type: "spring", delay: stagger(0.25, { startDelay: 1 }) });
+            }
+        },
+        { amount: 0.25 }
+    );
+</script>

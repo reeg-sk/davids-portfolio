@@ -1,4 +1,5 @@
 ---
+import { AnimatedText } from "../components/AnimatedText";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -19,7 +20,11 @@ import Layout from "../layouts/Layout.astro";
         preload="auto"
         class="absolute bg-black opacity-70 inset-0 w-full h-full object-cover"
       >
-        <source src="/assets/intro-movie-mobile.mov" type="video/mp4" media="(max-width: 480px)" />
+        <source
+          src="/assets/intro-movie-mobile.mov"
+          type="video/mp4"
+          media="(max-width: 480px)"
+        />
         <source src="/assets/intro-movie.mov" type="video/mp4" />
 
         Your browser does not support the video tag.
@@ -35,7 +40,7 @@ import Layout from "../layouts/Layout.astro";
           <span class="surname">Ďurišin</span>
         </h1>
         <div class="desc text-center flex flex-col gap-18">
-          <p class="text-sm/6 text-balance lg:text-lg/6 max-w-sm lg:max-w-lg">
+          <p class="text-xs/6 text-balance lg:text-lg/6 max-w-sm lg:max-w-lg">
             Creative short films, behind-the-scenes stories, raw visuals, and
             authentic moments. Emotion-driven storytelling with a focus on
             honesty, spontaneity, and a sharp eye for detail. A filmmaker guided
@@ -57,11 +62,16 @@ import Layout from "../layouts/Layout.astro";
     </section>
     <section
       id="about"
-      class="scrolling-section min-h-screen flex flex-col justify-center text-2xl mx-auto max-w-xl text-center"
+      class="scrolling-section min-h-screen flex flex-col justify-center mx-auto max-w-sm lg:max-w-2xl text-center"
     >
-      <h2 class="about-text">
-        This website is still work in progress. If you want to reach out to me
-        at david.durisin@outlook.com
+      <p class="name mb-8">About</p>
+      <h2
+        class="about-text text-xl lg:text-5xl text-balance tracking-tighter font-josefin line-clamp-5"
+      >
+        <AnimatedText
+          text="I'm Dávid Ďurišin, a self-taught filmmaker with a passion for visual storytelling. I specialize in video editing, cinematography, and screenwriting."
+          client:only="motion"
+        />
       </h2>
     </section>
   </main>

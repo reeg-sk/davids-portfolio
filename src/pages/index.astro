@@ -7,6 +7,7 @@ import Layout from "../layouts/Layout.astro";
     <section
       class="scrolling-section relative min-h-screen"
       client:only="motion"
+      id="intro"
     >
       <video
         autoplay
@@ -48,11 +49,27 @@ import Layout from "../layouts/Layout.astro";
         </p>
       </div>
     </section>
+    <section
+      id="about"
+      class="scrolling-section min-h-screen flex flex-col justify-center text-2xl mx-auto max-w-xl text-center"
+    >
+      <h2 class="about-text">
+        This website is still work in progress. If you want to reach out to me
+        at david.durisin@outlook.com
+      </h2>
+    </section>
   </main>
 </Layout>
 
 <script>
   import { animate, stagger, inView } from "motion";
+  inView(".about-text", (element) => {
+    animate(
+      element,
+      { x: [-500, 0], opacity: [0, 1] },
+      { type: "spring", damping: 1, delay: 0.5 }
+    );
+  });
 
   inView(
     ".scrolling-section",
@@ -71,6 +88,7 @@ import Layout from "../layouts/Layout.astro";
           { type: "spring", delay: stagger(0.25, { startDelay: 0.25 }) }
         );
       }
+
       const surname = element.querySelector(".surname");
       if (surname) {
         animate(

@@ -66,13 +66,6 @@ import Layout from "../layouts/Layout.astro";
 
 <script>
   import { animate, stagger, inView } from "motion";
-  inView(".about-text", (element) => {
-    animate(
-      element,
-      { y: [-50, 0], opacity: [0, 1] },
-      { type: "spring", damping: 1, delay: 0.5 }
-    );
-  });
 
   inView(
     ".scrolling-section",

@@ -1,5 +1,8 @@
 ---
 import { AnimatedText } from "../components/AnimatedText";
+import ParallaxText from "../components/ParallaxText";
+import ProjectItem from "../components/ProjectItem";
+import RevealText from "../components/RevealText";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -64,17 +67,35 @@ import Layout from "../layouts/Layout.astro";
     </section>
     <section
       id="about"
-      class="scrolling-section relative min-h-screen flex flex-col justify-center mx-auto max-w-sm lg:max-w-2xl text-center p-6"
+      class="scrolling-section relative min-h-screen flex flex-col justify-center mx-auto max-w-sm lg:max-w-2xl text-center p-6 py-6"
     >
-      <p class="name text-xs lg:text-base mb-8">About</p>
+      <p class="name text-xs lg:text-base mb-8">Capturing stories</p>
       <h2
-        class="about-text text-xl lg:text-5xl text-balance tracking-tighter font-josefin line-clamp-5"
+        class="about-text text-xl lg:text-5xl text-balance tracking-tighter font-josefin"
       >
         <AnimatedText
-          text="I'm David Ďurisin, a self-taught filmmaker with a passion for visual storytelling. I specialize in video editing, cinematography, and screenwriting."
+          text="I'm Dávid Ďurišin, a self-taught filmmaker with a passion for visual storytelling. I specialize in video editing, cinematography, and screenwriting."
           client:only="motion"
         />
       </h2>
+      <h3 class="about-subtext mt-8 text-lg lg:text-xl text-balance">
+        <RevealText
+          text="Besides that I'm eating bananas and drinking coffee."
+          client:only
+        />
+      </h3>
+    </section>
+    <section id="projects" class="scrolling-section relative min-h-screen flex flex-col justify-center text-center">
+      <ProjectItem
+        title="The Last Dance"
+        description="A short film about a couple's last dance together, exploring the themes of love, loss, and nostalgia."
+        videoSrc="/movies/video-amfik.mov"
+        client:only
+      />
+    </section>
+    <section class="relative py-32 text-xl xl:text-9xl text-nowrap opacity-40 select-none">
+      <ParallaxText client:only  baseVelocity={-3}>brought to you by</ParallaxText>
+      <ParallaxText client:only baseVelocity={1}>my mum</ParallaxText>
     </section>
   </main>
 </Layout>
@@ -127,12 +148,12 @@ import Layout from "../layouts/Layout.astro";
         );
       }
 
-      const email = element.querySelector(".email");
+      const email = element.querySelector(".about-subtext");
       if (email) {
         animate(
           email,
-          { opacity: [0, 1], y: [25, 0] },
-          { type: "spring", delay: stagger(0.25, { startDelay: 3.3 }) }
+          { opacity: [0, 1] },
+          { type: "ease-in-out", delay: 3 }
         );
       }
     },

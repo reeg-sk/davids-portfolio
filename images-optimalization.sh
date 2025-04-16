@@ -14,3 +14,4 @@ done
 
 # ffmpeg -i input.mp4 -vcodec libx265 -crf 28 output.mp4
 # Video optimalization
+# ffmpeg -i h264test13576.mp4 -movflags faststart -c copy updated.mp4

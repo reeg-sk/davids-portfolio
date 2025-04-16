@@ -127,7 +127,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
           onClick={handleCloseFullscreen}
         >
           <img
-            src={images[fullscreenIdx].src.replace("/optimized/", "/assets/")}
+            src={images[fullscreenIdx].src}
             alt={images[fullscreenIdx].label}
             className={`max-w-full max-h-full transition-transform duration-300 ${showAnim ? "scale-100" : "scale-90"}`}
             style={{ boxShadow: "0 0 40px #000" }}

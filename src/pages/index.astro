@@ -14,12 +14,13 @@ import Layout from "../layouts/Layout.astro";
       id="intro"
     >
       <video
-        autoplay="autoplay"
-        muted=""
-        loop="loop"
-        playsinline=""
-        preload="auto"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
         class="absolute bg-black opacity-70 inset-0 w-full h-full object-cover"
+        id="bg-video"
       >
         <source
           src="/assets/intro-movie-iphone-opt.mp4"
@@ -168,4 +169,14 @@ import Layout from "../layouts/Layout.astro";
     },
     { amount: 0.25 }
   );
+
+  // iOS autoplay workaround
+  if (typeof window !== "undefined") {
+    window.addEventListener("DOMContentLoaded", () => {
+      const vid = document.getElementById("bg-video");
+      if (vid && vid.paused) {
+        vid.play().catch(() => {});
+      }
+    });
+  }
 </script>

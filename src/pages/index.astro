@@ -20,8 +20,15 @@ import Layout from "../layouts/Layout.astro";
         playsinline
         preload="auto"
         class="absolute bg-black opacity-70 inset-0 w-full h-full object-cover"
-        src="/assets/intro-movie-opt.mp4"
+        id="bg-video"
       >
+        <source
+          src="/assets/intro-mobile-iphone-opt.mov"
+          type="video/mp4"
+          media="(max-width: 480px)"
+        />
+        <!-- <source src="/assets/intro-movie-opt.mp4" type="video/mp4" /> -->
+
         Your browser does not support the video tag.
       </video>
       <div

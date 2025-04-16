@@ -1,7 +1,7 @@
 ---
 import { AnimatedText } from "../components/AnimatedText";
+import { ImageGallery } from "../components/ImageGallery";
 import ParallaxText from "../components/ParallaxText";
-import ProjectItem from "../components/ProjectItem";
 import RevealText from "../components/RevealText";
 import Layout from "../layouts/Layout.astro";
 ---
@@ -24,11 +24,11 @@ import Layout from "../layouts/Layout.astro";
         class="absolute bg-black opacity-70 inset-0 w-full h-full object-cover"
       >
         <source
-          src="/assets/intro-movie-mobile.mov"
+          src="/assets/intro-movie-mobile-opt.mp4"
           type="video/mp4"
           media="(max-width: 480px)"
         />
-        <source src="/assets/intro-movie.mov" type="video/mp4" />
+        <source src="/assets/intro-movie-opt.mp4" type="video/mp4" />
 
         Your browser does not support the video tag.
       </video>
@@ -74,28 +74,43 @@ import Layout from "../layouts/Layout.astro";
         class="about-text text-xl lg:text-6xl text-balance tracking-tighter font-josefin"
       >
         <AnimatedText
-          text="I'm Dávid Ďurišin, a self-taught filmmaker with a passion for visual storytelling. I specialize in video editing, cinematography, and screenwriting."
+          text="I'm Dávid Ďurišin, a professional filmmaker with a passion for visual storytelling. I specialize in video editing, cinematography, and screenwriting."
           client:only="motion"
         />
       </h2>
-      <h3 class="about-subtext mt-8 mx-auto max-w-xs lg:max-w-lg text-balance text-md lg:text-xl">
+      <h3
+        class="about-subtext mt-8 mx-auto max-w-xs lg:max-w-lg text-balance text-md lg:text-2xl"
+      >
         <RevealText
-          text="Over the past five years, I've had the opportunity to collaborate closely with talented creatives across different fields."
+          text="Over the past four years, I've had the opportunity to collaborate closely with talented creatives across different fields."
           client:only
         />
       </h3>
     </section>
-    <section id="projects" class="scrolling-section relative min-h-screen flex flex-col justify-center text-center">
+    <!-- <section id="projects" class="scrolling-section relative min-h-screen flex flex-col justify-center text-center">
       <ProjectItem
         title="The Last Dance"
         description="A short film about a couple's last dance together, exploring the themes of love, loss, and nostalgia."
         videoSrc="/movies/video-amfik.mov"
         client:only
       />
+    </section> -->
+    <section class="photos">
+      <ImageGallery
+        images={[
+          ...Array.from({ length: 30 }, (_, i) => ({
+            src: `./optimalized/portfoto-${i + 1}.webp`,
+            label: `Visual image showcasing my work this is an image ${i} out of 30`
+          }))
+        ]}
+        client:only
+      />
     </section>
-    <section class="relative py-32 text-xl xl:text-9xl text-nowrap opacity-40 select-none">
-      <ParallaxText client:only  baseVelocity={-3}>since 2001 *</ParallaxText>
-      <ParallaxText client:only baseVelocity={1}>getting sh*t done</ParallaxText>
+    <section
+      class="relative py-32 text-xl xl:text-9xl text-nowrap opacity-40 select-none"
+    >
+      <ParallaxText client:only baseVelocity={-3}>project urisin</ParallaxText>
+      <ParallaxText client:only baseVelocity={1}>since 2021</ParallaxText>
     </section>
   </main>
 </Layout>
@@ -150,11 +165,7 @@ import Layout from "../layouts/Layout.astro";
 
       const email = element.querySelector(".about-subtext");
       if (email) {
-        animate(
-          email,
-          { opacity: [0, 1] },
-          { type: "ease-in-out", delay: 3 }
-        );
+        animate(email, { opacity: [0, 1] }, { type: "ease-in-out", delay: 3 });
       }
     },
     { amount: 0.25 }

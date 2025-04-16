@@ -11,4 +11,7 @@ export default defineConfig({
     },
 
   integrations: [react()],
+  image: {
+    domains: ["127.0.0.1", "d.urisin.sk"],
+  }
 });

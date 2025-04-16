@@ -5,10 +5,13 @@ function splitText(
     text: string,
     scrollYProgress: any
 ) {
-    return text.split('').map((char, i) => {
-        const start = i * 0.01
-        const end = start + 0.1
-        const opacity = useTransform(scrollYProgress, [start, end], [0.2, 1])
+    const words = text.split(' ');
+    const total = words.length + words.length / 2;
+    return words.map((word, i) => {
+        // Spread the animation across the whole scroll
+        const start = i / total;
+        const end = (i + 1) / total;
+        const opacity = useTransform(scrollYProgress, [start, end], [0.2, 1]);
 
         return (
             <motion.span
@@ -16,9 +19,10 @@ function splitText(
                 style={{
                     display: 'inline-block',
                     opacity,
+                    whiteSpace: 'pre',
                 }}
             >
-                {char === ' ' ? '\u00A0' : char}
+                {word + (i !== total - 1 ? '\u00A0' : '')}
             </motion.span>
         )
     })

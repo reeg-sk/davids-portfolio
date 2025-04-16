@@ -67,20 +67,20 @@ import Layout from "../layouts/Layout.astro";
     </section>
     <section
       id="about"
-      class="scrolling-section relative min-h-screen flex flex-col justify-center mx-auto max-w-sm lg:max-w-2xl text-center p-6 py-6"
+      class="scrolling-section relative min-h-screen flex flex-col justify-center mx-auto max-w-sm lg:max-w-4xl text-center p-6 py-6"
     >
       <p class="name text-xs lg:text-base mb-8">Capturing stories</p>
       <h2
-        class="about-text text-xl lg:text-5xl text-balance tracking-tighter font-josefin"
+        class="about-text text-xl lg:text-6xl text-balance tracking-tighter font-josefin"
       >
         <AnimatedText
           text="I'm Dávid Ďurišin, a self-taught filmmaker with a passion for visual storytelling. I specialize in video editing, cinematography, and screenwriting."
           client:only="motion"
         />
       </h2>
-      <h3 class="about-subtext mt-8 text-lg lg:text-xl text-balance">
+      <h3 class="about-subtext mt-8 mx-auto max-w-xs lg:max-w-lg text-balance text-md lg:text-xl">
         <RevealText
-          text="Besides that I'm eating bananas and drinking coffee."
+          text="Over the past five years, I've had the opportunity to collaborate closely with talented creatives across different fields."
           client:only
         />
       </h3>
@@ -94,8 +94,8 @@ import Layout from "../layouts/Layout.astro";
       />
     </section>
     <section class="relative py-32 text-xl xl:text-9xl text-nowrap opacity-40 select-none">
-      <ParallaxText client:only  baseVelocity={-3}>brought to you by</ParallaxText>
-      <ParallaxText client:only baseVelocity={1}>my mum</ParallaxText>
+      <ParallaxText client:only  baseVelocity={-3}>since 2001 *</ParallaxText>
+      <ParallaxText client:only baseVelocity={1}>getting sh*t done</ParallaxText>
     </section>
   </main>
 </Layout>

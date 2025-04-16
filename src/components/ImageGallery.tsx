@@ -8,6 +8,8 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
   const groupContainerRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const [fullscreenIdx, setFullscreenIdx] = useState<number | null>(null);
+  const [showAnim, setShowAnim] = useState(false);
+  const [pendingClose, setPendingClose] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -50,11 +52,36 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
   useEffect(() => {
     if (fullscreenIdx === null) return;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setFullscreenIdx(null);
+      if (e.key === "Escape") handleCloseFullscreen();
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
+    // eslint-disable-next-line
   }, [fullscreenIdx]);
+
+  // Animation trigger for fullscreen in/out
+  useEffect(() => {
+    if (fullscreenIdx !== null && !pendingClose) {
+      setShowAnim(false);
+      const t = setTimeout(() => setShowAnim(true), 10);
+      return () => clearTimeout(t);
+    }
+    if (pendingClose) {
+      setShowAnim(false);
+      // After animation, close overlay
+      const t = setTimeout(() => {
+        setFullscreenIdx(null);
+        setPendingClose(false);
+      }, 300); // match duration-300
+      return () => clearTimeout(t);
+    }
+  }, [fullscreenIdx, pendingClose]);
+
+  // Helper to animate zoom out before closing
+  const handleCloseFullscreen = () => {
+    setShowAnim(false);
+    setPendingClose(true);
+  };
 
   return (
     <>
@@ -68,7 +95,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
               {images.map((img, idx) => {
                 return (
                   <li
-                    className="img-container flex w-full lg:w-1/4 h-screen flex-none items-center justify-center flex-col"
+                    className="img-container flex w-full md:w-1/2 lg:w-1/3 xl:w-1/4 h-screen flex-none items-center justify-center flex-col"
                     key={img.src}
                   >
                     <img
@@ -96,18 +123,18 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
       {/* Fullscreen overlay */}
       {fullscreenIdx !== null && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
-          onClick={() => setFullscreenIdx(null)}
+          className={`fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 transition-opacity duration-300 ${showAnim ? "opacity-100" : "opacity-0"}`}
+          onClick={handleCloseFullscreen}
         >
           <img
             src={images[fullscreenIdx].src.replace("/optimized/", "/assets/")}
             alt={images[fullscreenIdx].label}
-            className="max-w-full max-h-full"
+            className={`max-w-full max-h-full transition-transform duration-300 ${showAnim ? "scale-100" : "scale-90"}`}
             style={{ boxShadow: "0 0 40px #000" }}
             onClick={e => e.stopPropagation()}
           />
           <button
-            onClick={() => setFullscreenIdx(null)}
+            onClick={handleCloseFullscreen}
             className="absolute top-4 right-4 text-white text-3xl bg-black bg-opacity-50 rounded px-3 py-1"
             aria-label="Close fullscreen"
             style={{ cursor: "pointer" }}

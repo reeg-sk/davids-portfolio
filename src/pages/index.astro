@@ -9,8 +9,7 @@ import Layout from "../layouts/Layout.astro";
 <Layout>
   <main>
     <section
-      class="scrolling-section relative min-h-screen"
-      client:only="motion"
+      class="relative min-h-screen"
       id="intro"
     >
       <video
@@ -19,7 +18,6 @@ import Layout from "../layouts/Layout.astro";
         loop
         playsinline
         class="absolute w-full h-full object-cover"
-        poster="/assets/intro-movie-poster.jpg"
       >
         <source
           src="/assets/intro-movie-iphone-fmp4.mp4"

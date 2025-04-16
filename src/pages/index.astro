@@ -10,7 +10,6 @@ import Layout from "../layouts/Layout.astro";
   <main>
     <section
       class="scrolling-section relative min-h-screen"
-      client:only="motion"
       id="intro"
     >
       <video
@@ -20,11 +19,9 @@ import Layout from "../layouts/Layout.astro";
         playsinline
         preload="auto"
         class="absolute bg-black opacity-70 inset-0 w-full h-full object-cover"
-        id="bg-video"
-        style="background: url('/assets/intro-mobile-iphone-opt.mov') no-repeat center center; background-size: cover;"
       >
         <source
-          src="/assets/intro-mobile-iphone-opt.mov"
+          src="/assets/intro-movie-iphone-opt.mov"
           type="video/mp4"
           media="(max-width: 480px)"
         />
@@ -165,7 +162,7 @@ import Layout from "../layouts/Layout.astro";
 
       const email = element.querySelector(".about-subtext");
       if (email) {
-        animate(email, { opacity: [0, 1] }, { type: "ease-in-out", delay: 3 });
+        animate(email, { opacity: [0, 1] }, { type: "tween", ease: "easeInOut", delay: 3 });
       }
     },
     { amount: 0.25 }

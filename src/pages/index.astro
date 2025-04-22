@@ -8,10 +8,7 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout>
   <main>
-    <section
-      class="scrolling-section relative min-h-screen"
-      id="intro"
-    >
+    <section class="scrolling-section relative min-h-screen" id="intro">
       <video
         autoplay
         muted
@@ -21,16 +18,14 @@ import Layout from "../layouts/Layout.astro";
         class="absolute bg-black opacity-70 inset-0 w-full h-full object-cover"
       >
         <source
-          src="/assets/intro-movie-m.mp4"
-          type="video/mp4"
           media="(max-width: 480px)"
+          type="video/mp4"
+          src="/intro/intro-movie-mobile.mov"
         />
         <source
-          src="/assets/intro-movie-m.mov"
           type="video/mp4"
-          media="(max-width: 480px)"
+          src="/intro/intro-movie-desktop.mov"
         />
-        <source src="/assets/intro-movie-d.mp4" type="video/mp4" />
 
         Your browser does not support the video tag.
       </video>
@@ -102,8 +97,8 @@ import Layout from "../layouts/Layout.astro";
         images={[
           ...Array.from({ length: 30 }, (_, i) => ({
             src: `./optimalized/portfoto-${i + 1}.webp`,
-            label: `Visual image showcasing my work this is an image ${i} out of 30`
-          }))
+            label: `Visual image showcasing my work this is an image ${i} out of 30`,
+          })),
         ]}
         client:only
       />
@@ -167,7 +162,11 @@ import Layout from "../layouts/Layout.astro";
 
       const email = element.querySelector(".about-subtext");
       if (email) {
-        animate(email, { opacity: [0, 1] }, { type: "tween", ease: "easeInOut", delay: 3 });
+        animate(
+          email,
+          { opacity: [0, 1] },
+          { type: "tween", ease: "easeInOut", delay: 3 }
+        );
       }
     },
     { amount: 0.25 }

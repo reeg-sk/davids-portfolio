@@ -18,6 +18,8 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
     const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
     // Parallax effect for the video
     const videoY = useTransform(scrollYProgress, [0, 1], [0, 60]);
+    // Zoom out effect as you scroll
+    const videoScale = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
 
     return (
         <div ref={ref} className="w-full relative">
@@ -31,8 +33,8 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
                 disablePictureInPicture
                 loop
                 src={videoSrc}
-                style={{ y: videoY }}
-                className="w-full h-full max-h-screen object-scale-down block"
+                style={{ y: videoY, scale: videoScale }}
+                className="w-full h-auto max-h-screen object-scale-down block"
                 aria-label={videoAlt || title}
             />
         </div>

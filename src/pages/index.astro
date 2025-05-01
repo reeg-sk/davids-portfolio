@@ -2,6 +2,7 @@
 import { AnimatedText } from "../components/AnimatedText";
 import { ImageGallery } from "../components/ImageGallery";
 import ParallaxText from "../components/ParallaxText";
+import ProjectItem from "../components/ProjectItem";
 import RevealText from "../components/RevealText";
 import Layout from "../layouts/Layout.astro";
 ---
@@ -64,7 +65,7 @@ import Layout from "../layouts/Layout.astro";
     </section>
     <section
       id="about"
-      class="scrolling-section relative min-h-screen flex flex-col justify-center mx-auto max-w-sm lg:max-w-4xl text-center p-6 py-6"
+      class="scrolling-section relative min-h-screen flex flex-col justify-center mx-auto max-w-sm lg:max-w-4xl text-center p-6 py-6 pb-18"
     >
       <p class="name text-xs lg:text-base mb-8">Capturing stories</p>
       <h2
@@ -84,25 +85,25 @@ import Layout from "../layouts/Layout.astro";
         />
       </h3>
     </section>
-    <!-- <section id="projects" class="scrolling-section relative min-h-screen flex flex-col justify-center text-center">
-      <ProjectItem
-        title="The Last Dance"
-        description="A short film about a couple's last dance together, exploring the themes of love, loss, and nostalgia."
-        videoSrc="/movies/video-amfik.mov"
-        client:only
-      />
-    </section> -->
     <section class="photos">
       <ImageGallery
-        images={[
+      images={[
           ...Array.from({ length: 30 }, (_, i) => ({
             src: `./optimalized/portfoto-${i + 1}.webp`,
             label: `Visual image showcasing my work this is an image ${i} out of 30`,
           })),
         ]}
         client:only
-      />
-    </section>
+        />
+      </section>
+      <section id="projects" class="scrolling-section relative min-h-screen flex flex-col justify-center text-center">
+        <ProjectItem
+          title="Amfík"
+          description="The way we"
+          videoSrc="/movies/video-amfik-h264.mp4"
+          client:only
+        />
+      </section>
     <section
       class="relative py-32 text-xl xl:text-9xl text-nowrap opacity-40 select-none"
     >

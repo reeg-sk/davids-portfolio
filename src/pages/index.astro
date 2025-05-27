@@ -23,10 +23,7 @@ import Layout from "../layouts/Layout.astro";
           type="video/mp4"
           src="/assets/intro-movie-mobile-h264.mp4"
         />
-        <source
-          type="video/mp4"
-          src="/assets/intro-movie-desktop-h264.mp4"
-        />
+        <source type="video/mp4" src="/assets/intro-movie-desktop-h264.mp4" />
 
         Your browser does not support the video tag.
       </video>
@@ -87,29 +84,58 @@ import Layout from "../layouts/Layout.astro";
     </section>
     <section class="photos">
       <ImageGallery
-      images={[
+        images={[
           ...Array.from({ length: 29 }, (_, i) => ({
             src: `./optimalized/portfoto-${i + 1}.webp`,
             label: `Visual image showcasing my work this is an image ${i} out of 30`,
           })),
         ]}
         client:only
-        />
-      </section>
-      <section id="projects" class="scrolling-section relative min-h-screen flex flex-col justify-center text-center">
+      />
+    </section>
+    <section
+      id="projects"
+      class="scrolling-section relative min-h-screen grid xl:grid-cols-2 justify-center gap-6 xl:gap-24"
+    >
+      <div class="flex flex-col justify-center mx-auto w-full p-6 lg:pl-56">
+        <p class="name text-xs lg:text-base mb-8">contact</p>
+        <div class="text-xl lg:text-3xl text-balance">
+          <AnimatedText
+            text="Feel free to reach out to me for any inquiries, collaborations, or just to say hello."
+            client:only
+          />
+        </div>
+        <a
+          href="mailto:david.durisin@outlook.com"
+          class="mt-12 text-2xl lg:text-5xl hover:scale-105 transition-transform duration-300 w-fit"
+        >
+          <RevealText text="david.durisin@outlook.com" client:only />
+        </a>
+        <a
+          href="tel:+421944032373"
+          class="mt-12 text-2xl lg:text-5xl hover:scale-105 transition-transform duration-300 w-fit"
+        >
+          <RevealText text="+421 944 032 373" client:only />
+        </a>
+      </div>
+      <div class="flex flex-col">
         <ProjectItem
           title="Amfík"
-          description="The way we"
+          description="The way we are"
           videoSrc="/movies/video-amfik-h264.mp4"
           client:only
         />
-      </section>
+      </div>
+    </section>
     <section
       class="relative py-32 text-xl xl:text-9xl text-nowrap opacity-40 select-none"
     >
       <ParallaxText client:only baseVelocity={-3}>project urisin</ParallaxText>
       <ParallaxText client:only baseVelocity={1}>since 2021</ParallaxText>
     </section>
+    <footer>
+      <p class="name text-xs lg:text-base mb-8 text-center">Copyright © 2025 Dávid Ďurišin</p>
+    </footer>
   </main>
 </Layout>
 
@@ -119,8 +145,6 @@ import Layout from "../layouts/Layout.astro";
   inView(
     ".scrolling-section",
     (element) => {
-      
-
       const name = element.querySelector(".name");
       if (name) {
         animate(

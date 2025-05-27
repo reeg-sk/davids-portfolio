@@ -25,7 +25,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
       if (group) {
         const animation = motionScroll(
           motionAnimate(group, {
-            transform: ["none", `translateX(-${(images.length - 1) * 22}vw)`],
+            transform: ["none", `translateX(-${(images.length - 1) * 23}vw)`],
           }),
           { target: groupContainerRef.current }
         );
@@ -87,7 +87,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
     <>
       <article id="gallery" className="w-[98vw] -mt-64">
         <section
-          className="img-group-container h-[250vh] relative"
+          className="img-group-container h-[300vh] relative"
           ref={groupContainerRef}
         >
           <div className="sticky top-0 overflow-hidden">

@@ -5,9 +5,11 @@ import ParallaxText from "../../components/ParallaxText";
 import ProjectItem from "../../components/ProjectItem";
 import RevealText from "../../components/RevealText";
 import Layout from "../../layouts/Layout.astro";
+
+let desc = "Silné obrazy, skutočné emócie a príbehy, ktoré zostávajú v pamäti. Tvorím na hrane dokumentu, reklamy aj autorskej tvorby s dôrazom na spoluprácu, detail a to, čo si príbeh žiada.";
 ---
 
-<Layout desc="Silné vizuály, skutočné emócie a príbehy, ktoré zostávajú v pamäti. Ako filmový tvorca sa pohybujem na hranici dokumentu, reklamy a kreatívnej tvorby. Záleží mi na tom, čo sa deje pred kamerou, ale rovnako aj na spolupráci so štábom, klientom a tom, čo si príbeh žiada.">
+<Layout desc={desc}>
   <main>
     <section class="scrolling-section relative min-h-screen" id="intro">
       <video
@@ -41,7 +43,7 @@ import Layout from "../../layouts/Layout.astro";
           <p
             class="text-xs/6 text-balance lg:text-lg/6 max-w-sm lg:max-w-lg p-7"
           >
-            Silné vizuály, skutočné emócie a príbehy, ktoré zostávajú v pamäti. Ako filmový tvorca sa pohybujem na hranici dokumentu, reklamy a kreatívnej tvorby. Záleží mi na tom, čo sa deje pred kamerou, ale rovnako aj na spolupráci so štábom, klientom a tom, čo si príbeh žiada.
+            {desc}
           </p>
           <p class="text-xl font-josefin font-bold">Slovakia | Worldwide</p>
         </div>

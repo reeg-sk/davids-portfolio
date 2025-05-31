@@ -1,4 +1,5 @@
 ---
+import { getRelativeLocaleUrl } from "astro/virtual-modules/i18n.js";
 import { AnimatedText } from "../components/AnimatedText";
 import { ImageGallery } from "../components/ImageGallery";
 import ParallaxText from "../components/ParallaxText";
@@ -48,6 +49,7 @@ import Layout from "../layouts/Layout.astro";
           </p>
           <p class="text-xl font-josefin font-bold">Slovakia | Worldwide</p>
         </div>
+        <a class="location absolute bottom-20 text-center p-2 px-6 rounded-full text-black text-xs bg-white" href={getRelativeLocaleUrl("sk")}>🇸🇰</a>
         <p
           class="location hidden lg:block absolute text-xl font-bold bottom-2 left-0 p-6"
         >
@@ -134,7 +136,9 @@ import Layout from "../layouts/Layout.astro";
       <ParallaxText client:only baseVelocity={1}>since 2021</ParallaxText>
     </section>
     <footer>
-      <p class="name text-xs lg:text-base mb-8 text-center">Copyright © 2025 Dávid Ďurišin</p>
+      <p class="name text-xs lg:text-base mb-8 text-center">
+        Copyright © 2025 Dávid Ďurišin
+      </p>
     </footer>
   </main>
 </Layout>

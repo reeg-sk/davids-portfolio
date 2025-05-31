@@ -1,15 +1,17 @@
 ---
 import "../styles/global.css";
+
+const { lang, desc } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang || "en"}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon"  href="/favicon.ico" />
     <title>Dávid Ďurišin</title>
-    <meta name="description" content="Creative short films, behind-the-scenes stories, raw visuals, and authentic moments. Emotion-driven storytelling with a focus on honesty, spontaneity, and a sharp eye for detail.">
+    <meta name="description" content={desc || "Creative short films, behind-the-scenes stories, raw visuals, and authentic moments. Emotion-driven storytelling with a focus on honesty, spontaneity, and a sharp eye for detail."}>
   </head>
   <body class="bg-[#131313] text-gray-100 font-sans">
     <main>

@@ -1,0 +1,192 @@
+---
+import { AnimatedText } from "../../components/AnimatedText";
+import { ImageGallery } from "../../components/ImageGallery";
+import ParallaxText from "../../components/ParallaxText";
+import ProjectItem from "../../components/ProjectItem";
+import RevealText from "../../components/RevealText";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout desc="Silné vizuály, skutočné emócie a príbehy, ktoré zostávajú v pamäti. Ako filmový tvorca sa pohybujem na hranici dokumentu, reklamy a kreatívnej tvorby. Záleží mi na tom, čo sa deje pred kamerou, ale rovnako aj na spolupráci so štábom, klientom a tom, čo si príbeh žiada.">
+  <main>
+    <section class="scrolling-section relative min-h-screen" id="intro">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        class="absolute bg-black opacity-70 inset-0 w-full h-full object-cover"
+      >
+        <source
+          media="(max-width: 480px)"
+          type="video/mp4"
+          src="/assets/intro-movie-mobile-h264.mp4"
+        />
+        <source type="video/mp4" src="/assets/intro-movie-desktop-h264.mp4" />
+
+        Your browser does not support the video tag.
+      </video>
+      <div
+        class="relative bottom-0 left-0 transform translate-z-1/2 w-full flex flex-col flex-wrap py-6 opacity-95 items-center justify-between min-h-screen overflow-hidden"
+      >
+        <h1
+          class="top-0 text-nowrap select-none font-josefin"
+          style="font-size: 15vi;"
+        >
+          <span class="name font-bold">Dávid</span>
+          <span class="surname">Ďurišin</span>
+        </h1>
+        <div class="desc text-center flex flex-col gap-18">
+          <p
+            class="text-xs/6 text-balance lg:text-lg/6 max-w-sm lg:max-w-lg p-7"
+          >
+            Silné vizuály, skutočné emócie a príbehy, ktoré zostávajú v pamäti. Ako filmový tvorca sa pohybujem na hranici dokumentu, reklamy a kreatívnej tvorby. Záleží mi na tom, čo sa deje pred kamerou, ale rovnako aj na spolupráci so štábom, klientom a tom, čo si príbeh žiada.
+          </p>
+          <p class="text-xl font-josefin font-bold">Slovakia | Worldwide</p>
+        </div>
+        <p
+          class="location hidden lg:block absolute text-xl font-bold bottom-2 left-0 p-6"
+        >
+          48.7164° N
+        </p>
+        <p
+          class="location hidden lg:block absolute text-xl font-bold bottom-2 right-0 p-6"
+        >
+          21.2611° E
+        </p>
+      </div>
+    </section>
+    <section
+      id="about"
+      class="scrolling-section relative min-h-screen flex flex-col justify-center mx-auto max-w-sm lg:max-w-4xl text-center p-6 py-6 pb-18"
+    >
+      <p class="name text-xs lg:text-base mb-8">Príbeh, kamera, strih</p>
+      <h2
+        class="about-text text-xl lg:text-6xl text-balance tracking-tighter font-josefin"
+      >
+        <AnimatedText
+          text="Volám sa Dávid Ďurišin a vo filmovej tvorbe sa venujem strihu, kamere a réžií."
+          client:only="motion"
+        />
+      </h2>
+      <h3
+        class="about-subtext mt-8 mx-auto max-w-xs lg:max-w-lg text-balance text-md lg:text-2xl"
+      >
+        <RevealText
+          text="Posledné štyri roky spolupracujem s ľuďmi z rôznych oblastí - od umelcov po produkcie. Tieto spolupráce formovali môj prístup. Otvorený, vizuálne precízny a založený na dôvere v proces aj ľudí, s ktorými tvorím."
+          client:only
+        />
+      </h3>
+    </section>
+    <section class="photos">
+      <ImageGallery
+        images={[
+          ...Array.from({ length: 29 }, (_, i) => ({
+            src: `./optimalized/portfoto-${i + 1}.webp`,
+            label: `Obrázok ${i} z 30 tvoriaci moje portfólio`,
+          })),
+        ]}
+        client:only
+      />
+    </section>
+    <section
+      id="projects"
+      class="scrolling-section relative min-h-screen grid xl:grid-cols-2 justify-center gap-6 xl:gap-24"
+    >
+      <div class="flex flex-col justify-center mx-auto w-full p-6 lg:pl-56">
+        <p class="name text-xs lg:text-base mb-8">kontakt</p>
+        <div class="text-xl lg:text-3xl text-balance">
+          <AnimatedText
+            text="Každý dobrý príbeh začína rozhovorom. Ten náš môže začať tu."
+            client:only
+          />
+        </div>
+        <a
+          href="mailto:david.durisin@outlook.com"
+          class="mt-12 text-2xl lg:text-5xl hover:scale-105 transition-transform duration-300 w-fit"
+        >
+          <RevealText text="david.durisin@outlook.com" client:only />
+        </a>
+        <a
+          href="tel:+421944032373"
+          class="mt-12 text-2xl lg:text-5xl hover:scale-105 transition-transform duration-300 w-fit"
+        >
+          <RevealText text="+421 944 032 373" client:only />
+        </a>
+      </div>
+      <div class="flex flex-col">
+        <ProjectItem
+          title="Amfík"
+          description="The way we are"
+          videoSrc="/movies/video-amfik-h264.mp4"
+          client:only
+        />
+      </div>
+    </section>
+    <section
+      class="relative py-32 text-xl xl:text-9xl text-nowrap opacity-40 select-none"
+    >
+      <ParallaxText client:only baseVelocity={-3}>project urisin</ParallaxText>
+      <ParallaxText client:only baseVelocity={1}>since 2021</ParallaxText>
+    </section>
+    <footer>
+      <p class="name text-xs lg:text-base mb-8 text-center">Copyright © 2025 Dávid Ďurišin</p>
+    </footer>
+  </main>
+</Layout>
+
+<script>
+  import { animate, stagger, inView } from "motion";
+
+  inView(
+    ".scrolling-section",
+    (element) => {
+      const name = element.querySelector(".name");
+      if (name) {
+        animate(
+          name,
+          { opacity: [0, 1], y: [10, 0] },
+          { type: "spring", delay: stagger(0.25, { startDelay: 0.25 }) }
+        );
+      }
+
+      const surname = element.querySelector(".surname");
+      if (surname) {
+        animate(
+          surname,
+          { opacity: [0, 1] },
+          { type: "spring", delay: stagger(0.25, { startDelay: 0.25 }) }
+        );
+      }
+
+      const cards = element.querySelectorAll(".location");
+      if (cards.length > 0) {
+        animate(
+          cards,
+          { opacity: [0, 1], y: [25, 0] },
+          { type: "spring", delay: stagger(0.25, { startDelay: 0.75 }) }
+        );
+      }
+
+      const desc = element.querySelector(".desc");
+      if (desc) {
+        animate(
+          desc,
+          { opacity: [0, 1], y: [25, 0] },
+          { type: "spring", delay: stagger(0.25, { startDelay: 1 }) }
+        );
+      }
+
+      const email = element.querySelector(".about-subtext");
+      if (email) {
+        animate(
+          email,
+          { opacity: [0, 1] },
+          { type: "tween", ease: "easeInOut", delay: 1.6 }
+        );
+      }
+    },
+    { amount: 0.25 }
+  );
+</script>
